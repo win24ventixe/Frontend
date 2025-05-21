@@ -16,8 +16,9 @@ const PortalLayout = () => {
             <Nav />
             <main>
                 <Outlet />
+                <Footer />
             </main>
-            <Footer />
+           
         </div>
     )
 }
