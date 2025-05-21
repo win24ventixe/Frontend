@@ -7,7 +7,7 @@ import Location from "../Images/Location.svg";
  const EventItem = ({ item }) => {
     
   return (
-    <Link to={`/events/${item.id}`} className="event-card">
+    <Link to={`/events/${item.id}`} className='event-card'>
       <div >
         <img src={item.image} className='event-card-image' alt={item.title} />
         <div className='event-card-body'>
