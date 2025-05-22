@@ -5,8 +5,8 @@ const Bookings = () => {
     const [bookings, setBookings] = useState([]);
     return (
         <>
-            <div id="bookings">
-                <h1>Events</h1>
+            <section id="bookings">
+                <h1>Bookings</h1>
                 <div className="bookings-list">
                  
                     {bookings.map((booking) => (
@@ -21,7 +21,7 @@ const Bookings = () => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </section>
           
         </>
     );

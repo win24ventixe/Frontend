@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const BookingEventPage = () => {
@@ -6,84 +6,91 @@ const BookingEventPage = () => {
     const{id} = useParams() 
     const [event, setEvent] = useState({})
     const [formData, setFormData] = useState({
-        eventId: id,
+        eventId: id || '',
         firstName: '',
         lastName: '',
         email: '',
         streetName: '',
-        city: '',
         postalCode: '',
-        ticketQuantity: 1,
+        city: '',
+        ticketQuantity: 1
     })
     useEffect(() => {
       getEvent()
     }, [])
+
     const getEvent = async () => {
       try {
         const response = await fetch(`https://eventsservice-esbyg2euehamegg7.swedencentral-01.azurewebsites.net/api/Events/${id}`)
-        if (response.ok) {
+        if (!response.ok) throw new Error ("Failed to fetch event")
+
             const data = await response.json()
             setEvent(data.result)
-        }
       } catch (error) {
-        console.error("Fetch failed", error)
+        console.error(error)
       }
     }
-    const handelSubmit = async (e) => {
+    
+    const handleChange = (e) => {
+      const { name, value } = e.target
+      setFormData(prev => ({ ...prev, [name]: value}))
+    }
+
+    const handleSubmit = async (e) => {
+      e.preventDefault()
       try{
-        const response = await fetch(`https://bookingsservices-gbgka2ffe0h4bgc4.swedencentral-01.azurewebsites.net/api/bookings`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
+        const response = await fetch(`https://bookingsservices-gbgka2ffe0h4bgc4.swedencentral-01.azurewebsites.net/api/Bookings`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
         })
-        if (response.ok) {
-          navigate('/')
+        if (!response.ok) {
+          console.error("Booking failed")
+        }
+          else {
+            console.log("Booking successful")
+            navigate('/')
         }
       } catch (error) {
         console.error("Fetch failed", error)
       }
     }
     
-    const handelChange = (e) => {
-      const { name, value } = e.target
-      setFormData(prev => ({...prev, [name]: value}))
-    }
-
-
   return (
-    <div>
+    <section>
       <h1>Booking Event - {event.title}</h1>
-      <form onSubmit={handelSubmit} noValidate>
-        <div>
+      <form onSubmit={handleSubmit} noValidate>
+        <div className="form-group">
           <label>First Name</label>
-          <input type="text" name="firstName" value={formData.firstName} onChange={handelChange} required />
+          <input className="field-group" type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Last Name</label>
-          <input type="text" name="lastName" value={formData.lastName} onChange={handelChange} required />
+          <input className="field-group" type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Email</label>
-          <input type="email" name="email" value={formData.email} onChange={handelChange} required />
+          <input className="field-group" type="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Street Name</label>
-          <input type="tel" name="phone" value={formData.streetName} onChange={handelChange} required />
+          <input className="field-group" type="text" name="streetName" value={formData.streetName} onChange={handleChange} required />
         </div>
-        <div>
-          <label>City</label>
-          <input type="text" name="city" value={formData.city} onChange={handelChange} required />
-        </div>
-        <div>
+         <div className="form-group">
           <label>Postal Code</label>
-          <input type="text" name="postalCode" value={formData.postalCode} onChange={handelChange} required />
+          <input className="field-group" type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
         </div>
-
-        <button type="submit">Book Now</button>
+        <div className="form-group">
+          <label>City</label>
+          <input className="field-group" type="text" name="city" value={formData.city} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Ticket Quantity</label>
+          <input className="field-group" type="number" name="ticketQuantity" value={formData.ticketQuantity} onChange={handleChange} min="1" required />
+        </div>
+        <button type="submit" className="book-btn">Book Now</button>
       </form>
-    </div>
+    </section>
   )
 }
 
