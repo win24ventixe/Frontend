@@ -117,12 +117,12 @@ html, body {
 
 .portal {
     display: grid;
-    grid-template-columns: minmax(50px, 270px) 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: "logo top" "side main";
+    grid-template-columns: 1fr;
+    grid-template-areas: "logo top main";
     height: 100dvh;
-
-
+    span {
+        display: none;
+    }
     .logotype {
         grid-area: logo;
         border: 1px solid var(--border-color);
@@ -131,34 +131,76 @@ html, body {
         justify-content: center;
         align-items: center;
         gap: 1.2rem;
+        height: 25px;
+        width: 25px;
     }
-
-    .side {
-        grid-area: side;
-        border: 1px solid var(--border-color);
-        padding: 1rem 2rem;
-    }
-
-    .top {
+     .top {
         grid-area: top;
-        border: 1px solid var(--border-color);
-        padding: 1rem 2rem;
-        display: grid;
-        grid-template-columns: 1fr auto auto auto;
-        gap: 3rem;
-        align-items: center;
-        margin-bottom: 2rem;
+         border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        height: 100px;
+         width: 100px;
+     }
+    @media (width >= 768px) {
+        grid-template-columns:  1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: "logo top" "side main";
+        
     }
+     @media (width >= 1400px) {
+        display: grid;
+        grid-template-columns: minmax(50px, 270px) 1fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas: "logo top" "side main";
+        height: 100dvh;
+        span {
+        display: block;
+        }
+        .logotype {
+            grid-area: logo;
+            border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.2rem;
+        }
 
-     .main {
-        grid-area: main;
-        padding: 2rem;
-        margin-top: 2rem;
-        border: 1px solid var(--border-color);
-        border-radius: 16px;
-        background-color: var(--background-color);
-    }   
-}
+        .side {
+            grid-area: side;
+            border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+        }
+
+        .top {
+            grid-area: top;
+            border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .main {
+            grid-area: main;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            background-color: var(--background-color);
+        }  
+    }
+ 
+    
+} 
+
 #footer{
     display: grid;
     gap: 3rem;
@@ -215,46 +257,84 @@ h6 {
 }
 
 /* nav link */
+
+
 .nav-links {
     margin: 2rem 0;
+    display: none;
 
-
-    .nav-link {
-        font-size: 1em;
-        font-family: var(--font-standard);
-        font-weight: var(--font-semibold);
-        text-decoration: none;
-        color: var(--navlink-text-color);
-        background-color: var(--navlink-background-color);
-        border-radius: 1rem;
-        padding: 1rem 1.5rem;
-        margin-bottom: 10px;
+    @media (width >= 768px) {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1.2rem;
+        flex-direction: column;
+        gap: 1rem;
+       cursor: pointer;
+    
+        .nav-link {
+            font-size: 1em;
+            font-family: var(--font-standard);
+            font-weight: var(--font-semibold);
+            text-decoration: none;
+            color: var(--navlink-text-color);
+            background-color: var(--navlink-background-color);
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.2rem;
 
-        .icon {
-            width: 1.5rem;
-            height: 1.5rem;
-           color: var(--navlink-text-color);
+            .icon {
+                width: 1.5rem;
+                height: 1.5rem;
+                color: var(--navlink-text-color);
+                &:hover {
+                    color: var(--navlink-text-hover-color);
+                    background-color: var(--btn-pink-background-color);
+                    border-radius: 2rem;
+                }
+                &.active {
+                    color: var(--navlink-text-hover-color);
+                    background-color: var(--btn-pink-background-color);
+                    border-radius: 2rem;
+                }
+            }
+        }
+         .nav-link:hover{
+            color: var(--navlink-text-hover-color);
+            background-color: var(--btn-pink-background-color);
+            padding: 1rem 1.5rem;
+            border-radius: 2rem;
+        }
+
+         .nav-link.active {
+            color: var(--navlink-text-active-color);
+            background-color: var(--btn-pink-background-color);
         }
     }
 
-        .nav-link:hover {
+    @media (width >= 1400px) {
+        transition: background 0.3s ease;
+        span {
+            display: block;
+        }
+        .nav-link:hover{
             color: var(--navlink-text-hover-color);
             background-color: var(--navlink-background-hover-color);
             padding: 1rem 1.5rem;
             border-radius: 2rem;
-           
         }
 
          .nav-link.active {
             color: var(--navlink-text-active-color);
             background-color: var(--navlink-background-active-color);
+            padding: 1rem 1.5rem;
+            border-radius: 2rem;
+            
         }
-      
-}
+    }  
+ }     
+
 
     .tab-links {
         font-size: 1em;
@@ -464,12 +544,29 @@ form {
 /* sections */
 #events {
     display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 1rem;
+    margin: 2rem;
     gap: 3rem;
 
     .events-list {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: 1fr;
         gap: 2rem;
-
+    }
+    @media (width >= 768px) {
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+    }
+    @media (width >= 1400px) {
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
     }
 }
