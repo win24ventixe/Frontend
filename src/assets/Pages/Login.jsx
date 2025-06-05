@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import CookieConsent from '../Components/CookieConsent'
 const Login = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -50,7 +51,9 @@ const Login = () => {
         </div>
         
         <button type="submit" className="book-btn">Login</button>
-
+        <p className="login-text">Don't have an account? <a href="/SignUp">Register</a></p>
+        
+        <CookieConsent />
       </form>
     </section>
   )

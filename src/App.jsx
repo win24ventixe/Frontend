@@ -24,7 +24,7 @@ function App() {
           <Route path="events/booking/:id" element={<BookingEventPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="bookings" element={<Bookings />} />
+          <Route path="bookings" element={<Login />} />
         </Route>
       </Routes>
     </>

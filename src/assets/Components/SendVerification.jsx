@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const SendVerification = () => {
     const navigate = useNavigate()
-    
+    const [formData, setFormData] = useState({
+        email: ''
+      })
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             const response = await fetch(`https://verification-service-dqgvbyhrb7azh3fc.swedencentral-01.azurewebsites.net/api/Verification/send`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: ''}), // Replace with actual email input
+                body: JSON.stringify(formData),
             })
             if (!response.ok) {
                 console.error('Failed to send verification email')
@@ -40,7 +42,7 @@ const SendVerification = () => {
             
             <button type="submit" className="book-btn">Send Verification Email</button>
         </form>
-    <button onClick={() => navigate('/login')} className="book-btn">Back to Login</button>
+
     </section>
   )
 }

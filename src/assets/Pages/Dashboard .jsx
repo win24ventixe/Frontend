@@ -1,4 +1,5 @@
 import React from 'react'
+import SendVerification from '../Components/SendVerification'
 
 const Dashboard  = () => {
   return (
@@ -8,6 +9,7 @@ const Dashboard  = () => {
           <p>Welcome to the dashboard!</p>
           <p>Here you can manage your events and bookings.</p>
           <p>Use the navigation menu to access different sections.</p>
+          <SendVerification />
         </main>
       </div>
   )
