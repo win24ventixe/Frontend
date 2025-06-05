@@ -6,7 +6,7 @@ const BookingEventPage = () => {
     const{id} = useParams() 
     const [event, setEvent] = useState({})
     const [formData, setFormData] = useState({
-        eventId: id || '',
+       
         firstName: '',
         lastName: '',
         email: '',
@@ -44,6 +44,10 @@ const BookingEventPage = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         })
+        if (formData.ticketQuantity < 1) {
+          alert("You must book at least 1 ticket.")
+          return;
+        }
         if (!response.ok) {
           console.error("Booking failed")
         }
@@ -60,6 +64,8 @@ const BookingEventPage = () => {
     <section>
       <h1>Booking Event - {event.title}</h1>
       <form onSubmit={handleSubmit} noValidate>
+        
+      
         <div className="form-group">
           <label>First Name</label>
           <input className="field-group" type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />

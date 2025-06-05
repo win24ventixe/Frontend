@@ -1,29 +1,22 @@
 
 import React, { useState} from "react";
+import SendVerification from "../Components/SendVerification";
+import Login from "./Login";
 
 const Bookings = () => {
-    const [bookings, setBookings] = useState([]);
-    return (
-        <>
-            <section id="bookings">
-                <h1>Bookings</h1>
-                <div className="bookings-list">
-                 
-                    {bookings.map((booking) => (
-                        <div key={booking.id} className="booking-card">
-                            <h2>{booking.eventName}</h2>
-                            <p>{booking.date}</p>
-                            <p>{booking.description}</p>
-                            <p>{booking.location}</p>
-                            <div className="progress-bar">
-                                <div className="progress" style={{ width: `${booking.progress}%` }}></div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-          
-        </>
-    );
+
+
+
+return (
+     <div className="portal">
+        <main>
+            <Login />
+            <SendVerification />
+            
+        </main>
+    </div>
+
+);
+    
 }
 export default Bookings;
