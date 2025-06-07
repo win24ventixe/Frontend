@@ -19,7 +19,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch(`https://authenticationservice-d2ezfpftgwazavfj.swedencentral-01.azurewebsites.net/api/Auth/signup`, {
+      const response = await fetch(`https://accountsrevice-e8ffh7a8cdfyd7bq.swedencentral-01.azurewebsites.net/api/Accounts/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

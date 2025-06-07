@@ -61,7 +61,7 @@ const BookingEventPage = () => {
     }
     
   return (
-    <section>
+    <section id='booking'>
       <h1>Booking Event - {event.title}</h1>
       <form onSubmit={handleSubmit} noValidate>
         

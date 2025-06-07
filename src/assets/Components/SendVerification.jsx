@@ -40,7 +40,7 @@ const SendVerification = () => {
                 <input className="field-group" type="email" name="email" onChange={handleChange} required />
             </div>
             
-            <button type="submit" className="book-btn">Send Verification Email</button>
+            <p className="book-btn"><a href="/VerifyCode">Send Verification Email</a></p>
         </form>
 
     </section>

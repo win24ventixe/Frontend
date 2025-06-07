@@ -370,6 +370,7 @@ h6 {
 a {
     color: var(--navlink-text-color);
     text-decoration: none;
+    
 }
 
     a:hover {
@@ -539,6 +540,13 @@ form {
         align-items: center;
         gap: 0.5rem;
     }
+}
+
+.input-group {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
 }
 
 /* sections */

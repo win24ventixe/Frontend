@@ -9,6 +9,7 @@ import BookingEventPage from './assets/Pages/BookingEventPage';
 import SignUp from './assets/Pages/SignUp';
 import Login from './assets/Pages/Login';
 import Bookings from './assets/Pages/Bookings';
+import VerifyCode from './assets/Components/VerifyCode';
 
 
 
@@ -24,7 +25,8 @@ function App() {
           <Route path="events/booking/:id" element={<BookingEventPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="bookings" element={<Login />} />
+          <Route path="VerifyCode" element={<VerifyCode />} />
+          <Route path="booking" element={<Login />} />
         </Route>
       </Routes>
     </>
